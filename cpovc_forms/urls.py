@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
 
      path('si/', views.test, name='test'),
+     path('commonforms/admission/', views.admission, name='admission'),
 
 
     path('', views.forms_home, name='forms'),

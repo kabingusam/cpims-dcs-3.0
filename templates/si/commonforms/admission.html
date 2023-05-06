@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %} {{block.super}} Locked out {% endblock page_title%}    
+
+{% block primary %}
+
+  <title>Admission Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="number"] {
+      width: 300px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    
+    select {
+      width: 316px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    
+    textarea {
+      width: 300px;
+      height: 100px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .section-title {
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    
+    .section-content {
+      margin-bottom: 20px;
+    }
+    
+    .submit-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>ADMISSION FORM</h1>
+
+  <form>
+    <div class="section-content">
+      <label>Name:</label>
+      <input type="text" name="name" required>
+      
+      <label>Nickname:</label>
+      <input type="text" name="nickname">
+      
+      <label>Sex:</label>
+      <select name="sex">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      
+      <label>Date of Birth:</label>
+      <input type="date" name="dateOfBirth">
+      
+      <label>Age:</label>
+      <input type="number" name="age">
+      
+      <label>Date of Admission to the Remand Home:</label>
+      <input type="date" name="admissionDate">
+      
+      <label>Current Year of School:</label>
+      <input type="text" name="currentYearOfSchool">
+      
+      <label>Type of Admission:</label>
+      <input type="checkbox" name="newAdmission"> New Admission
+      <input type="checkbox" name="readmissionAfterEscape"> Readmission after Escape
+      <input type="checkbox" name="readmissionOnRelapse"> Readmission on Relapse
+      <input type="checkbox" name="transferIn"> Transfer In
+    </div>
+    
+    <div class="section-title">2. FAMILY DETAILS</div>
+    <div class="section-content">
+      <label>Mother's Name:</label>
+      <input type="text" name="motherName">
+      
+      <label>Address:</label>
+      <input type="text" name="motherAddress">
+      
+      <label>Telephone:</label>
+      <input type="text" name="motherTelephone">
+      
+      <label>Alive?</label>
+      <input type="radio" name="motherAlive" value="yes" checked> Yes
+      <input type="radio" name="motherAlive" value="no"> No
+      
+      <label>Father's Name:</label>
+      <input type="text" name="fatherName">
+      
+      <label>Address:</label>
+      <input type="text" name="fatherAddress">
+      
+      <label>Telephone:</label>
+      <input type="text" name="fatherTelephone">
+      
+      <label>Alive?</label>
+      <input type="radio" name="fatherAlive" value="yes" checked> Yes
+      <input type="radio" name="fatherAlive" value="no"> No
+      
+      <label>Guardian's Name (if different):</label>
+      <input type="text" name="guardianName">
+      
+      <label>Address and Telephone:</label>
+      <input type="text" name="guardianAddress">
+      
+      <label>Other Adults Interested in the Child:</label>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Relationship</th>
+          <th>Address and Telephone</th>
+        </tr>
+        <tr>
+          <td><input type="text" name="adultName1"></td>
+          <td><input type="text" name="adultRelationship1"></td>
+          <td><input type="text" name="adultAddress1"></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="adultName2"></td>
+          <td><input type="text" name="adultRelationship2"></td>
+          <td><input type="text" name="adultAddress2"></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="adultName3"></td>
+          <td><input type="text" name="adultRelationship3"></td>
+          <td><input type="text" name="adultAddress3"></td>
+        </tr>
+      </table>
+      
+      <label>Known Siblings:</label>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Sex</th>
+          <th>Age</th>
+          <th>Address and Telephone</th>
+        </tr>
+        <tr>
+          <td><input type="text" name="siblingName1"></td>
+          <td><input type="text" name="siblingSex1"></td>
+          <td><input type="text" name="siblingAge1"></td>
+          <td><input type="text" name="siblingAddress1"></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="siblingName2"></td>
+          <td><input type="text" name="siblingSex2"></td>
+          <td><input type="text" name="siblingAge2"></td>
+          <td><input type="text" name="siblingAddress2"></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="siblingName3"></td>
+          <td><input type="text" name="siblingSex3"></td>
+          <td><input type="text" name="siblingAge3"></td>
+          <td><input type="text" name="siblingAddress3"></td>
+        </tr>
+      </table>
+      
+      <label>Are there any persons not permitted to have contact with or supervise the child?</label>
+      <input type="radio" name="contactPermission" value="yes"> Yes
+      <input type="radio" name="contactPermission" value="no" checked> No
+      <br>
+      If Yes, specify the names and relationship to the child:<br>
+      <textarea name="contactPermissionDetails " rows="4" cols="50"></textarea>
+    </div>
+    
+    <div class="section-title">3. REFERRAL</div>
+    <div class="section-content">
+      <label>Child referred to Remand Home by:</label>
+      <input type="text" name="referralSource">
+      
+      <label>Type of Entry:</label>
+      <input type="checkbox" name="identified"> Was identified
+      <input type="checkbox" name="referred"> Was referred
+      <input type="checkbox" name="ownWill"> Came of own will
+      
+      <label>Referral Source & identification details of the person referring:</label>
+      <textarea name="referralDetails" rows="4" cols="50"></textarea>
+      
+      <label>Current health situation:</label>
+      <textarea name="healthSituation" rows="4" cols="50"></textarea>
+      
+      <label>Any special needs and circumstances:</label>
+      <textarea name="specialNeeds" rows="4" cols="50"></textarea>
+      
+      <label>Has the parent/guardian signed the parental consent form?</label>
+      <input type="radio" name="consentForm" value="yes"> Yes
+      <input type="radio" name="consentForm" value="no" checked> No
+      
+      <label>Does the child have a care/committal court order?</label>
+      <input type="radio" name="courtOrder" value="yes"> Yes
+      <input type="radio" name="courtOrder" value="no" checked> No
+    </div>
+    
+    <div class="submit-button">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+
+{% endblock primary %}
+
+{% block lazy_javascript_code %}{% endblock lazy_javascript_code %}

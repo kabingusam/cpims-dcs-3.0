@@ -65,6 +65,8 @@ from cpovc_ctip.functions import handle_ctip, get_ctip
 def test(request):
     return render(request, 'si/si.html')
 
+def admission(request):
+    return render(request, 'si/commonforms/admission.html')
 
 def validate_serialnumber(person_id, subcounty, serial_number):
     try:

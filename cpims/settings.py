@@ -37,6 +37,9 @@ INSTALLED_APPS = (
     'crispy_forms',
     'rest_framework',
     'rest_framework.authtoken',
+    'cpovc_ctip',
+    'cpovc_afc',
+    'cpovc_api',
 )
 
 MIDDLEWARE = [
@@ -79,12 +82,14 @@ WSGI_APPLICATION = 'cpims.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cpims2',
-        'USER': 'bowen2',
-        'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
+        'NAME': 'cpims_gok',
+        'USER': 'admin',
+        'PASSWORD': '123456ab',
+        'HOST': '38.242.139.32',
         'PORT': '5432', }
 }
+
+DCS = ""
 
 LANGUAGE_CODE = 'en-us'
 
@@ -179,4 +184,7 @@ CACHES = {
         'LOCATION': '127.0.0.1:11211',
     }
 }
+
+
+
 # CSRF_FAILURE_VIEW = 'cpims.views.csrf_failure'

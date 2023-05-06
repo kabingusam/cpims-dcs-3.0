@@ -4,10 +4,6 @@ from . import views
 # This should contain urls related to registry ONLY
 urlpatterns = [
 
-     path('si/', views.test, name='test'),
-     path('commonforms/admission/', views.admission, name='admission'),
-
-
     path('', views.forms_home, name='forms'),
     path('followups/', views.forms_registry, name='forms_registry'),
 

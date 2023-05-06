@@ -62,12 +62,6 @@ from cpovc_ctip.forms import CTIPForm
 from cpovc_ctip.functions import handle_ctip, get_ctip
 
 
-def test(request):
-    return render(request, 'si/si.html')
-
-def admission(request):
-    return render(request, 'si/commonforms/admission.html')
-
 def validate_serialnumber(person_id, subcounty, serial_number):
     try:
         serial_number_exists = OVCCaseRecord.objects.filter(

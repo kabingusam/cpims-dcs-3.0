@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block page_title %} {{block.super}} Locked out {% endblock page_title%}    
+{% block page_title %} {{block.super}} Statutory Institution {% endblock page_title%}    
 
 {% block primary %}
 <style>
@@ -89,8 +89,7 @@
           <div class="dropdown-content">
             <a href="{% url 'biodata' %}">Biodata Collection (Additional)</a>
             <a href="#">Pre-Admission</a>
-            <a href="#">Admission</a>
-            <a href="#">Stay</a>
+            <a href="{% url 'admission' %}">Admission</a>
             <a href="#">Stay</a>
             <a href="#">Pre-Exit</a>
             <a href="#">Exit</a>
@@ -120,7 +119,7 @@
           <div class="dropdown-content">
             <a href="{% url 'biodata' %}">Biodata Collection (Additional)</a>
             <a href="#">Pre-Admission</a>
-            <a href="#">Admission</a>
+            <a href="{% url 'admission' %}">Admission</a>
             <a href="#">Stay</a>
             <a href="#">Pre-Exit</a>
             <a href="#">Exit</a>
@@ -135,7 +134,7 @@
           <div class="dropdown-content">
             <a href="{% url 'biodata' %}">Biodata Collection (Additional)</a>
             <a href="#">Pre-Admission</a>
-            <a href="#">Admission</a>
+           <a href="{% url 'admission' %}">Admission</a>
             <a href="#">Stay</a>
             <a href="#">Pre-Exit</a>
             <a href="#">Exit</a>

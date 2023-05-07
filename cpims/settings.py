@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'cpims.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cpims_gok2',
+        'NAME': 'cpims_gok3',
         'USER': 'admin',
         'PASSWORD': '123456ab',
         'HOST': '38.242.139.32',

@@ -77,6 +77,110 @@ list_ratings = get_list('ratings_id')
 list_frequency = get_lists(['period_frequency_id', 'na_option'])
 
 
+class RehabAdmission(forms.Form):
+    """AFC Form 1A."""
+    SEX_CHOICES = (
+        ('M', _('Male')),
+        ('F', _('Female')),
+        ('O', _('Other')),
+    )
+
+    date_of_birth = forms.DateField(widget=forms.TextInput(
+        attrs={'placeholder': _('Date'),
+               'class': 'form-control',
+               'id': 'event_date',
+               'data-parsley-required': "true"
+               }))
+
+    child_name = forms.CharField(
+        max_length=50,
+        required=True,
+        label=_("First Name"),
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        error_messages={'required': _('This field is required.')},
+        help_text=_("Enter your  name.")
+    )
+
+    mother_name = forms.CharField(
+        max_length=50,
+        required=True,
+        label=_("Other Names"),
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        error_messages={'required': _('This field is required.')},
+        help_text=_("Enter your mother names.")
+    )
+    mother_address = forms.CharField(
+        max_length=50,
+        required=False,
+        label=_("Other Names"),
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        error_messages={'required': _('This field is required.')},
+        help_text=_("Enter your mother address.")
+    )
+    mother_telephone = forms.CharField(
+        max_length=50,
+        required=True,
+        label=_("Other Names"),
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        error_messages={'required': _('This field is required.')},
+        help_text=_("Enter your mother names.")
+    )
+    mother_is_alive = forms.ChoiceField(
+        choices=YESNO_CHOICES,
+        required=True,
+        widget=forms.RadioSelect(
+            # renderer=RadioCustomRenderer,
+            attrs={'id': 'has_bcert',
+                   'data-parsley-required': 'true',
+                   'data-parsley-errors-container': "#qf1A1_rdo_error"}))
+
+    father_name = forms.CharField(
+        max_length=50,
+        required=False,
+        label=_("Nickname or given name"),
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    father_address = forms.CharField(
+        max_length=50,
+        required=False,
+        label=_("Nickname or given name"),
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    father_telephone = forms.CharField(
+        max_length=50,
+        required=False,
+        label=_("Nickname or given name"),
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    father_is_alive = forms.ChoiceField(
+        choices=YESNO_CHOICES,
+        required=True,
+        widget=forms.RadioSelect(
+            # renderer=RadioCustomRenderer,
+            attrs={'id': 'has_bcert',
+                   'data-parsley-required': 'true',
+                   'data-parsley-errors-container': "#qf1A1_rdo_error"}))
+
+
+    nickname = forms.CharField(
+        max_length=50,
+        required=False,
+        label=_("Nickname or given name"),
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    sex = forms.ChoiceField(
+        choices=SEX_CHOICES,
+        required=True,
+        label=_("Sex"),
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        error_messages={'required': _('This field is required.')},
+        help_text=_("Select your sex.")
+    )
+
+    age = forms.DateField(
+        required=False,
+    )
 
 class DocumentsManager(forms.Form):
     document_type = forms.ChoiceField(
@@ -129,6 +233,13 @@ class AFCForm1A(forms.Form):
         ('M', _('Male')),
         ('F', _('Female')),
         ('O', _('Other')),
+    )
+
+    COUNTY_CHOICES = (
+    ('county1', 'County 1'),
+    ('county2', 'County 2'),
+    ('county3', 'County 3'),
+    # Add more counties here
     )
 
     event_date = forms.DateField(widget=forms.TextInput(
@@ -186,7 +297,56 @@ class AFCForm1A(forms.Form):
         error_messages={'required': _('This field is required.')},
         help_text=_("Enter your date of birth.")
     )
-    
+
+    county_of_birth = forms.ChoiceField(
+        choices=COUNTY_CHOICES,
+        required=True,
+        label=_("Place of Birth: County"),
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        error_messages={'required': _('This field is required.')},
+        help_text=_("Select your county of birth.")
+    )
+
+    sub_county_of_birth = forms.CharField(
+        max_length=50,
+        required=True,
+        label=_("Sub County"),
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        error_messages={'required': _('This field is required.')},
+        help_text=_("Enter your sub county of birth.")
+    )
+
+    location = forms.CharField(
+        max_length=50,
+        required=False,
+        label=_("loaction"),
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    ward_of_birth = forms.CharField(
+        max_length=50,
+        required=True,
+        label=_("Ward"),
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        error_messages={'required': _('This field is required.')},
+        help_text=_("Enter your ward of birth.")
+    )
+
+    sub_location = forms.CharField(
+        max_length=50,
+        required=False,
+        label=_("Sub Location"),
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    village = forms.CharField(
+        max_length=50,
+        required=False,
+        label=_("Village"),
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+
     qf1A1_rdo = forms.ChoiceField(
         choices=YESNO_CHOICES,
         required=True,

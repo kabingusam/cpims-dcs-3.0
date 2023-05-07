@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block page_title %} Alternative Care Forms - {{ form_name }}{% endblock %}
+{% block page_title %} Bio Data {{ form_name }}{% endblock %}
 
 {% load app_filters %}
 
@@ -50,7 +50,7 @@ form#new-form-b ul {
 <!-- begin breadcrumb -->
 <ol class="breadcrumb pull-right">
 	<li><a href="#">Home</a></li>
-	<li class="active">Alternative Care - Forms </li>
+	<li class="active">Bio Data </li>
 </ol>
 <!-- end breadcrumb -->
 <!-- begin page-header -->
@@ -87,7 +87,9 @@ form#new-form-b ul {
                    
                     {% endif %}
                     </span>
-                    Case No: {{ case_num }} :: {{ case.case.case_serial }}
+                    Bio Data
+                    <!-- Case No: {{ case_num }} :: {{ case.case.case_serial }} -->
+
                 </div>
             </div>
             <div class="panel-body">
@@ -165,22 +167,32 @@ form#new-form-b ul {
                                     <div class="col-md-4">{{ form.qf1A2 }}</div>
                                 </div>
                                 <hr>
+
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">Place of Birth: County</label>
-                                    <div class="col-md-2">{{ geos.GPRV }}</div>
-                                    <label class="col-md-2 control-label">Sub County</label>
-                                    <div class="col-md-2">{{ geos.GDIS }}</div>
-                                    <label class="col-md-2 control-label">Ward</label>
-                                    <div class="col-md-2">{{ geos.GWRD }}</div>
+                                        <label class="col-md-2 control-label">Place of Birth: County</label>
+                                        <div class="col-md-3">
+                                            {{ form.sub_county_of_birth }}
+                                        </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">Location</label>
-                                    <div class="col-md-2">Not Provided</div>
-                                    <label class="col-md-2 control-label">Sub Location</label>
-                                    <div class="col-md-2">Not Provided</div>
-                                    <label class="col-md-2 control-label">Village</label>
-                                    <div class="col-md-2">Not provided</div>
+                                        <label class="col-md-2 control-label">Location</label>
+                                        <div class="col-md-3">
+                                            {{ form.sub_county_of_birth }}
+                                        </div>
+                                        <label class="col-md-2 control-label">Sub Location</label>
+                                        <div class="col-md-3">
+                                            {{ form.sub_location }}
+                                        </div>
                                 </div>
+
+                                <div class="form-group">
+                                        <label class="col-md-2 control-label">Village</label>
+                                        <div class="col-md-3">
+                                            {{ form.village }}
+                                        </div>
+                                </div>
+
                                 <hr>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Height (cm)</label>
@@ -434,15 +446,15 @@ form#new-form-b ul {
                         </div>
                         <!-- end wizard step-3 -->
                     </div>
-                    
-                    
-                    
-                    <div class="form-group" id="printId">
-                        <label class="col-md-2 control-label"></label>
-                        <div class="col-md-3">
+                    <form method="post" action="{% url 'create_person' %}">
+                        <!-- form fields -->
+                        <div class="form-group" id="printId">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-3">
                             <button type="submit" class="btn btn-sm btn-success">Submit Form {{ form_id }} details</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </form>
             </div>
         </div>

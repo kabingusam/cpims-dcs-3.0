@@ -1,10 +1,8 @@
 from django.urls import path, re_path
 from . import views
 
+# This should contain urls related to si ONLY
 
 urlpatterns = [
-
-     path('si/', views.test, name='test'),
-     path('commonforms/admission/', views.admission, name='admission')
-
+    path('test/', views.test, name='si'),
 ]

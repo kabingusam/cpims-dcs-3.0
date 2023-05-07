@@ -24,6 +24,7 @@ from cpovc_help import urls as help_urls
 from notifications import urls as noti_urls
 from cpovc_ctip import urls as ctip_urls
 from cpovc_afc import urls as ac_urls
+from cpovc_si import urls as si_urls
 
 from django.views.generic import TemplateView
 # For dashboard
@@ -33,6 +34,7 @@ from cpovc_dashboard import views as dash_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('si/', include(si_urls)),
     # url(r'^$', 'cpovc_auth.views.log_in', name='home'),
     path('', views.home, name='home'),
     path('accounts/request/', views.access, name='access'),

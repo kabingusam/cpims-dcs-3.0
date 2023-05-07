@@ -49,3 +49,8 @@ class RegHelpConfig(AppConfig):
 
     name = 'cpovc_help'
     verbose_name = 'Help, FAQ and Documentation'
+
+class CpovcSiConfig(AppConfig):
+    "student summit"
+    name = 'cpovc_si'
+    verbose_name = 'Si Forms'

@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'cpovc_ctip',
     'cpovc_afc',
     'cpovc_api',
+    'cpovc_si'
 )
 
 MIDDLEWARE = [

@@ -43,6 +43,27 @@ form#new-form-b ul {
   #step2, #step3  { display: block !important; }
   .control-label {margin-bottom: 5px;}
 }
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,td{
+    padding: 10px;
+    text-align: left; 
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+.custom-margin {
+      margin-left: 10em;
+    }
+.table-margin {
+        margin-left: 10px;
+      }
 </style>
 {% endblock %}
 
@@ -75,7 +96,7 @@ form#new-form-b ul {
             <div class="myForm">
             <div class="divHeader"><img src="{% static 'img/logo_gok.png' %}"><br/>MINISTRY OF LABOUR AND SOCIAL PROTECTION
             <br/>STATE DEPARTMENT OF SOCIAL PROTECTION <br/>DIRECTORATE OF CHILDREN SERVICES <br/><br/>
-            <b>Alternative Care - FORM {{ form_id }} - {{ form_name }}</b></div>
+            <b>Statutory Institution - FORM {{ form_id }} - {{ form_name }}</b></div>
             <div class="cinvoice">
                 <div class="invoice-company">
                     <span class="pull-right hidden-print">
@@ -120,6 +141,15 @@ form#new-form-b ul {
                             <fieldset>
                                 <legend class="pull-left width-full">CHILD BIOGRAPHICAL INFORMATION</legend>
                                 <div class="form-group">
+                                    <label class="col-md-2 control-label">Child's Case Number</label>
+                                    <div class="col-md-3">
+                                        {{ form.first_name }}
+                                    </div>
+                                    <label class="col-md-2 control-label">Child's Current Location</label>
+                                    <div class="col-md-3">{{ form.other_names }}</div>
+                                    <div class="col-md-1"></div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-md-2 control-label">Date Assessment started <span class="asteriskField">*</span></label>
                                     <div class="col-md-3">
                                         {{ form.event_date }}
@@ -133,7 +163,7 @@ form#new-form-b ul {
                                         <div class="col-md-3">
                                             {{ form.first_name }}
                                         </div>
-                                        <label class="col-md-2 control-label">Other Names</label>
+                                        <label class="col-md-2 control-label">Middle Name</label>
                                         <div class="col-md-3">{{ form.other_names }}</div>
                                         <div class="col-md-1"></div>
                                 </div>
@@ -142,7 +172,7 @@ form#new-form-b ul {
                                         <div class="col-md-3">
                                             {{ form.surname }}
                                         </div>
-                                        <label class="col-md-2 control-label">Nickname or given name</label>
+                                        <label class="col-md-2 control-label">Nickname or likes to be called</label>
                                         <div class="col-md-3">{{ form.nickname }}</div>
                                         <div class="col-md-1"></div>
                                     </div>
@@ -152,9 +182,18 @@ form#new-form-b ul {
                                         <div class="col-md-3">
                                             {{ form.sex }}
                                         </div>
-                                        <label class="col-md-2 control-label">Other Names</label>
+                                        <label class="col-md-2 control-label">Date of birth(DOB)</label>
                                         <div class="col-md-3">{{ form.other_names }}</div>
                                         <div class="col-md-1"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Current age</label>
+                                    <div class="col-md-3">
+                                        {{ form.first_name }}
+                                    </div>
+                                    <label class="col-md-2 control-label">Estimate of approximate age if DOB unknown:</label>
+                                    <div class="col-md-3">{{ form.other_names }}</div>
+                                    <div class="col-md-1"></div>
                                 </div>
 
                                 <div class="form-group">
@@ -173,24 +212,28 @@ form#new-form-b ul {
                                         <div class="col-md-3">
                                             {{ form.sub_county_of_birth }}
                                         </div>
-                                </div>
-
-                                <div class="form-group">
-                                        <label class="col-md-2 control-label">Location</label>
+                                        <label class="col-md-2 control-label">Subcounty</label>
                                         <div class="col-md-3">
                                             {{ form.sub_county_of_birth }}
                                         </div>
-                                        <label class="col-md-2 control-label">Sub Location</label>
-                                        <div class="col-md-3">
-                                            {{ form.sub_location }}
-                                        </div>
                                 </div>
 
                                 <div class="form-group">
-                                        <label class="col-md-2 control-label">Village</label>
-                                        <div class="col-md-3">
-                                            {{ form.village }}
-                                        </div>
+                                    <label class="col-md-2 control-label">Village</label>
+                                    <div class="col-md-3">{{ form.sub_county_of_birth }}</div>
+                                    <label class="col-md-2 control-label">Not known<span class="asteriskField">*</span></label>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <span id="qf1A1_rdo_error"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Religion</label>
+                                    <div class="col-md-2">
+                                        {{ form.religion }}
+                                        <span id="qf1A1_rdo_error"></span>
+                                    </div>
                                 </div>
 
                                 <hr>
@@ -206,33 +249,155 @@ form#new-form-b ul {
                                     <label class="col-md-2 control-label">Ethnicity</label>
                                     <div class="col-md-4">{{ form.qf1A6 }}</div>
                                 </div>
+                                
+                                <hr>
+                                <p class="pull-left width-full">Distinguishing physical features (e.g., scar or birth mark)     Languages:</p>
+                                <p></p>
+                                <p></p>
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">Distinguishing Marks</label>
-                                    <div class="col-md-3">{{ form.qf1A7 }}</div>
-                                    <label class="col-md-2 control-label">Languages</label>
-                                    <div class="col-md-4">{{ form.qf1A8 }}</div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Religion</label>
-                                    <div class="col-md-3">Not Provided</div>
-                                    <label class="col-md-2 control-label"></label>
-                                    <div class="col-md-4"></div>
-                                </div>
-                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">Has disability <span class="asteriskField">*</span></label>
-                                    <div class="col-md-3">
-                                        {{ form.qf1A10_rdo }}
-                                        <span id="qf1A2_rdo_error"></span>
+                                    <label class="col-md-4 control-label">Have difficulty seeing, even if wearing glasses?</label>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                {{ form.qf1A1_rdo }}
+                                                <span id="qf1A1_rdo_error"></span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">some difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">a lot of difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Cannot do it at all</label>
+                                                {{ form.available }}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <label class="col-md-2 control-label"></label>
-                                    <div class="col-md-4"></div>
                                 </div>
-                                <div class="form-group" id="disability_details_div">
-                                    <label class="col-md-2 control-label">Type of Disability <span class="asteriskField">*</span></label>
-                                    <div class="col-md-3">{{ form.qf1A11_sdd }}</div>
-                                    <label class="col-md-2 control-label">Disability severity <span class="asteriskField">*</span></label>
-                                    <div class="col-md-4">{{ form.qf1A12_sdd }}</div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Have difficulty hearing, even if using a hearing aid? </label>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                {{ form.qf1A1_rdo }}
+                                                <span id="qf1A1_rdo_error"></span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">some difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">a lot of difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Cannot do it at all</label>
+                                                {{ form.available }}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Have difficulty walking or climbing steps? </label>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                {{ form.qf1A1_rdo }}
+                                                <span id="qf1A1_rdo_error"></span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">some difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">a lot of difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Cannot do it at all</label>
+                                                {{ form.available }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Have difficulty remembering or concentrating?  </label>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                {{ form.qf1A1_rdo }}
+                                                <span id="qf1A1_rdo_error"></span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">some difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">a lot of difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Cannot do it at all</label>
+                                                {{ form.available }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Have difficulty (with self-care such as) washing all over or dressing?  </label>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                {{ form.qf1A1_rdo }}
+                                                <span id="qf1A1_rdo_error"></span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">some difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">a lot of difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Cannot do it at all</label>
+                                                {{ form.available }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Have difficulty communicating, (for example understanding or being understood by others)?</label>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                {{ form.qf1A1_rdo }}
+                                                <span id="qf1A1_rdo_error"></span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="control-label">some difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">a lot of difficulty, </label>
+                                                {{ form.available }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="control-label">Cannot do it at all</label>
+                                                {{ form.available }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <p></p>
                                 
                             </fieldset>
@@ -251,34 +416,326 @@ form#new-form-b ul {
                                     <label class="col-md-2 control-label">Age of child at admission</label>
                                     <div class="col-md-4">{{ form.qf1A13 }}</div>
                                 </div>
+
+                                <hr>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Other forms of admission</label>
                                     <div class="col-md-3">{{ form.qf1A14_sdd }}</div>
-                                    <label class="col-md-2 control-label"></label>
-                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Was Admission Order issued? <span class="asteriskField">*</span></label>
+                                        <div class="col-md-3">
+                                            {{ form.qf1A24_rdo }}
+                                            <span id="qf1A24_rdo_error"></span>
+                                        </div>
+                                        <label class="col-md-2 control-label"></label>
+                                        <div class="col-md-4"></div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Has Committal Order <span class="asteriskField">*</span></label>
-                                    <div class="col-md-3">
-                                       {{ form.qf1A15_rdo }}
-                                        <span id="qf1A15_rdo_error"></span>
-                                    </div>
-                                    <label class="col-md-2 control-label"></label>
-                                    <div class="col-md-4"></div>
-                                </div>
+
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Committal, Order No.</label>
                                     <div class="col-md-3">{{ form.qf1A16 }}</div>
                                     <label class="col-md-2 control-label">Committal Order date</label>
                                     <div class="col-md-4">{{ form.qf1A17 }}</div>
                                 </div>
+
+                                <hr>
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">Who referred the child (Name)</label>
-                                    <div class="col-md-3">{{ form.qf1A18 }}</div>
-                                    <label class="col-md-2 control-label">Referrer Title</label>
-                                    <div class="col-md-4">{{ form.qf1A19 }}</div>
+                                    <label class="col-md-2 control-label">Who referred the child?</label>
                                 </div>
+                                </br>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Name</label>
+                                    <div class="col-md-3">{{ form.qf1A18 }}</div>
+                                    <label class="col-md-2 control-label">Title</label>
+                                    <div class="col-md-3">{{ form.qf1A18 }}</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"></label>
+                                    <div class="col-md-3"></div>
+                                    <label class="col-md-2 control-label">Name and address of current care provider</label>
+                                    <div class="col-md-4">{{ form.qf1A17 }}</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Relationship to the child</label>
+                                    <div class="col-md-3">{{ form.qf1A18 }}</div>
+                                    <label class="col-md-2 control-label">Registration status</label>
+                                    <div class="col-md-3">{{ form.qf1A19 }}</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Phone no</label>
+                                    <div class="col-md-3">{{ form.qf1A19 }}</div>
+                                    <label class="col-md-2 control-label">Contact</label>
+                                    <div class="col-md-3">{{ form.qf1A18 }}</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Location</label>
+                                    <div class="col-md-3">{{ form.qf1A18 }}</div>
+                                </div>
+
+                                <hr>
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">Current Alternative Care Placement Type</label>
+                                </div>
+                                </br>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">Kinship Care</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">Foster Care</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">Temporary Shelter</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">CCI</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">SCI</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">Supported child-headed household</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">Supported Independent Living</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">Guardianship</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">Kafaalah</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">Other[specify]</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-3 custom-margin">
+                                        <label class="control-label"></label>
+                                    </div>
+                                    <label class="col-md-2 control-label">specify</label>
+                                    <div class="col-md-4">{{ form.qf1A17 }}</div>
+                                </div>
+
+                                <hr>
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">Reasons for admission (please tick all applicable):</label>
+                                </div>
+                                </br>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">School/education access</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">Poverty/family vulnerability</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">Abuse or neglect at home</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">Child abandoned</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">Child on the street</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">HIV & AIDS or other chronic illness</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">Special needs (disability)</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">Child victim of human trafficking</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">Orphan</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">Child lost and found</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">Separated/unaccompanied</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.available }}
+                                        <label class="control-label">Child of imprisoned parent</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-3 custom-margin">
+                                        {{ form.available }}
+                                        <label class="control-label">Other [specify]</label>
+                                    </div>
+                                    <label class="col-md-2 control-label">specify</label>
+                                    <div class="col-md-4">{{ form.qf1A17 }}</div>
+                                </div>
+
+                                <hr>
+                                <h5>Previous history of placements:</h5>
+                                </br>
+                                </br>
+                                <table class="table">
+                                    <tr>
+                                    <th >Type of placement</th>
+                                    <th >From</th>
+                                    <th>To</th>
+                                    </tr>
+                                    <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <div class="table-margin">
+                                                {{ form.available }}
+                                                <label class="control-label">CCI</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    </tr>
+                                    <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <div class="table-margin">
+                                                {{ form.available }}
+                                                <label class="control-label">Kinship</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    </tr>
+                                    <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <div class="table-margin">
+                                                {{ form.available }}
+                                                <label class="control-label">Foster</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="table-margin">
+                                                    {{ form.available }}
+                                                    <label class="control-label">Kafaalah</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="table-margin">
+                                                    {{ form.available }}
+                                                    <label class="control-label">Guardianship</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="table-margin">
+                                                    {{ form.available }}
+                                                    <label class="control-label">Temporary shelter / safe place</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="table-margin">
+                                                    {{ form.available }}
+                                                    <label class="control-label">Other [e.g. SIL or supported child headed household)</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="table-margin">
+                                                    {{ form.available }}
+                                                    <label class="control-label">If the child has been in several types of care e.g. various CCIs, please indicate the types and/or names of CCIs</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                </table>
+
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Previous history of placements</label>
                                     <div class="col-md-10">

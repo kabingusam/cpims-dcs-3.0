@@ -2,20 +2,12 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.forms.widgets import RadioSelect
 
-from cpovc_main.functions import get_list, get_org_units_list
 from cpovc_registry.functions import (
     get_geo_list, get_all_geo_list, get_all_location_list,
     get_all_sublocation_list)
 from cpovc_registry.models import RegOrgUnit
 # from .functions import get_questions
 # Added for CTiP
-from cpovc_main.country import OCOUNTRIES
-
-from django import forms
-from django.forms.widgets import RadioSelect
-
-from django.utils.translation import gettext_lazy as _
-
 from cpovc_main.functions import get_list, get_lists
 immunization_list = get_list('immunization_status_id', 'Please Select')
 
@@ -76,7 +68,51 @@ list_sex_other_id = get_list('sex_id', 'Please Select')
 list_ratings = get_list('ratings_id')
 list_frequency = get_lists(['period_frequency_id', 'na_option'])
 
+# joseph implimentation
+psearch_criteria_list = get_list('psearch_criteria_type_id', 'Select Criteria')
 
+class RadioCustomRenderer(RadioSelect):
+    """Custom radio button renderer class."""
+
+    def render(self):
+        """Renderer override method."""
+        pass
+
+class StatutorySearchForm(forms.Form):
+    """Search registry form."""
+
+    person_type = forms.ChoiceField(
+        choices=person_type_list,
+        initial='0',
+        required=True,
+        widget=forms.Select(
+            attrs={'class': 'form-control',
+                   'id': 'person_type',
+                   'data-parsley-required': 'true'}))
+
+    search_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'placeholder': _('Search . . .'),
+                   'class': 'form-control',
+                   'id': 'search_name',
+                   'data-parsley-group': 'primary',
+                   'data-parsley-required': 'true'}))
+
+    search_criteria = forms.ChoiceField(
+        choices=psearch_criteria_list,
+        initial='0',
+        required=True,
+        widget=forms.Select(
+            attrs={'class': 'form-control',
+                   'id': 'search_criteria',
+                   'data-parsley-required': 'true'}))
+
+    person_deceased = forms.CharField(
+        required=False,
+        widget=forms.CheckboxInput(
+            attrs={'id': 'person_deceased'}))
+
+ #joseph implimentation   
 class RehabAdmission(forms.Form):
     """AFC Form 1A."""
     SEX_CHOICES = (
@@ -235,11 +271,29 @@ class AFCForm1A(forms.Form):
         ('O', _('Other')),
     )
 
+    RELIGION_CHOICES = [
+        ('Christian', 'Christian'),
+        ('Muslim', 'Muslim'),
+        ('Hindu', 'Hindu'),
+    ]
+    YES_CHOICE = [
+        ('Yes', 'Yes'),
+    ]
+
     COUNTY_CHOICES = (
     ('county1', 'County 1'),
     ('county2', 'County 2'),
     ('county3', 'County 3'),
     # Add more counties here
+    )
+    
+    religion = forms.MultipleChoiceField(
+        choices=RELIGION_CHOICES,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'square-button'})
+    )
+    yes_choice = forms.MultipleChoiceField(
+        choices=YES_CHOICE,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'square-button'})
     )
 
     event_date = forms.DateField(widget=forms.TextInput(
@@ -345,6 +399,13 @@ class AFCForm1A(forms.Form):
         label=_("Village"),
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
+    available = forms.BooleanField(
+        required=False,
+        widget=forms.CheckboxInput(
+            attrs={'id': 'has_bcert',
+                   'data-parsley-required': 'true',
+                   'data-parsley-errors-container': "#qf1A1_rdo_error",
+                   'class': 'square-button'}))
 
 
     qf1A1_rdo = forms.ChoiceField(
